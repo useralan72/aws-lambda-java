@@ -1,0 +1,10 @@
+{
+    "utility" : "1",
+    "meter" : 1,
+    "resource_path" : "/{utility}/v2/services/{meter}",
+    "apiId" : "36qyla01m0",
+    "accountId" : "180668824229",
+    "stage" : "test-invoke-stage",
+    "httpMethod" : "GET",
+    "body" : "{}"
+}
