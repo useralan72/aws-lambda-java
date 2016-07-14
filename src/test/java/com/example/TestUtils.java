@@ -48,7 +48,7 @@ public class TestUtils {
     public static <T> T parse(String resource, Class<T> clazz)
             throws IOException {
 
-        InputStream stream = TestUtils.class.getClassLoader().getResourceAsStream(resource);
+        InputStream stream = TestUtils.class.getResourceAsStream(resource);
         try {
             if (clazz == S3Event.class) {
                 String json = IOUtils.toString(stream);

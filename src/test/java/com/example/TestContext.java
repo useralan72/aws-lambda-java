@@ -45,16 +45,6 @@ public class TestContext implements Context {
         return functionName;
     }
 
-    @Override
-    public String getFunctionVersion() {
-        return null;
-    }
-
-    @Override
-    public String getInvokedFunctionArn() {
-        return null;
-    }
-
     public void setFunctionName(String value) {
         functionName = value;
     }

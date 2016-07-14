@@ -19,31 +19,27 @@ public class FileRouterService implements RouterService {
 	private final static String BUCKETNAME = "lambda-function-bucket-us-west-2-1467892012680";
 	private final static String FILENAME = "routing.properties";
 	
-	private String  bucketName;
+	private String bucketName;
 	private String fileName;
+	private Properties properties = new Properties();
 	
-	public FileRouterService() {
+	public FileRouterService() throws IOException{
 		this(BUCKETNAME, FILENAME);
 	}
 	
-	public FileRouterService(String bucketName, String fileName) {
+	public FileRouterService(String bucketName, String fileName) throws IOException{
 		this.bucketName = bucketName;
 		this.fileName = fileName;
-	}
-
-	@Override
-	public Map<String, String> routes() {
-		Properties properties = new Properties();
     	AmazonS3 client = new AmazonS3Client();
     	S3Object xFile = client.getObject(bucketName, fileName);
     	InputStream contents = xFile.getObjectContent(); 
-    	try {
-    		properties.load(contents);
-			contents.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}  
+    	properties.load(contents);
+		contents.close();	
+	}
+
+	@Override
+	public Map<String, String> routes() {  
+		//convert loaded properties to a map
         Map<String, String> mapOfProperties = properties.entrySet().stream()
         		.collect(Collectors.toMap(e -> String.valueOf(e.getKey()), e -> String.valueOf(e.getValue())));
     	return mapOfProperties;

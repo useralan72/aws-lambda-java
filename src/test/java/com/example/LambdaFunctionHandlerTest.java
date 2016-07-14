@@ -3,7 +3,6 @@ package com.example;
 import java.io.IOException;
 import java.util.HashMap;
 
-import com.amazonaws.AmazonServiceException;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -20,7 +19,7 @@ public class LambdaFunctionHandlerTest {
 
     @BeforeClass
     public static void createInput() throws IOException {
-        // TODO: set up your sample input object here.
+        //get in the sample data from our test file
     	input = TestUtils.parse("custom.get.json", HashMap.class);
     }
 
@@ -33,8 +32,7 @@ public class LambdaFunctionHandlerTest {
         return ctx;
     }
 
-    //at the moment this is failing until we stub out the AWS call
-    @Test(expected = AmazonServiceException.class)
+    @Test
     public void testLambdaFunctionHandler() {
         LambdaFunctionHandler handler = new LambdaFunctionHandler();
         Context ctx = createContext();
